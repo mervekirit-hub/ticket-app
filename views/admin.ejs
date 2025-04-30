@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin-page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+
+
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <!-- navigation start -->
+    <div class="container">
+        
+        <%- include("partials/_navigation") %>
+
+    <!-- main start -->
+        <div class="main">
+            
+            <%- include("partials/_topbar") %>
+            
+    <!-- cards start -->
+<div class="cardBox">
+    <div class="card">
+        <div class="iconBx">
+            <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="rightRow">
+            <div class="cardName">Todays Tickets</div>
+            <div class="numbers"><%= ticketStats.todaysTickets %> <span class="new">New</span></div>  
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="iconBx">
+            <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="rightRow">
+            <div class="cardName">Tickets in Progress</div>
+            <div class="numbers"><%= ticketStats.inProgressTickets %> <span class="new">New</span></div>  
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="iconBx">
+            <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="rightRow">
+            <div class="cardName">Last 10 Days Tickets</div>
+            <div class="numbers"><%= ticketStats.last10DaysTickets %> <span class="new">New</span></div>  
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="iconBx">
+            <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="rightRow">
+            <div class="cardName">Last 30 Days Tickets</div>
+            <div class="numbers"><%= ticketStats.last30DaysTickets %> <span class="new">New</span></div>  
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="iconBx">
+            <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="rightRow">
+            <div class="cardName">Todays Tickets</div>
+            <div class="numbers"><%= ticketStats.todaysCompletedTickets %> <span class="completed">Completed</span></div>  
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="iconBx">
+            <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="rightRow">
+            <div class="cardName">Last 3 Days Tickets</div>
+            <div class="numbers"><%= ticketStats.last3DaysCompletedTickets %> <span class="completed">Completed</span></div>  
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="iconBx">
+            <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="rightRow">
+            <div class="cardName">Last 10 Days Tickets</div>
+            <div class="numbers"><%= ticketStats.last10DaysCompletedTickets %> <span class="completed">Completed</span></div>  
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="iconBx">
+            <i class="bi bi-ticket-perforated"></i>
+        </div>
+        <div class="rightRow">
+            <div class="cardName">Last 30 Days Tickets</div>
+            <div class="numbers"><%= ticketStats.last30DaysCompletedTickets %> <span class="completed">Completed</span></div>  
+        </div>
+    </div>    
+</div>
+<!-- details -->
+            <div class="details-admin">
+                <div class="tickets-admin">
+                    <div class="cardHeader-admin">
+                        <h2>Recent Tickets</h2>
+                        <a href="/tickets" class="btn" target="_blank">View All</a>
+                    </div>
+                     <table class="recent-tickets-table">
+                        <thead>
+                            <tr>
+                                <td>Username</td>
+                                <td>Ticket ID</td>
+                                <td>Department</td>
+                                <td>Priority</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% tickets.forEach(function(ticket) { %>
+                                <tr data-ticket-id="<%= ticket._id %>">
+                                    <td><%= ticket.user.name %></td>
+                                    <td><%= ticket._id %></td>
+                                    <td><%= ticket.ticket.department %></td>
+                                    <td><%= ticket.ticket.priority %></td>
+                                    <td>
+                                        <a href="#" class="status <%= ticket.status.toLowerCase() %>">
+                                            <%= ticket.status %>
+                                        </a>
+                                    </td>
+                                </tr>
+                            <% }); %>
+                        </tbody>
+                    </table> 
+
+            </div>
+
+            <!-- Recent Customers Section -->
+            <div class="recentCustomers">
+                <div class="cardHeader">
+                    <h2>Recent Customers</h2>
+                </div>
+
+                <table>
+                    <% if (recentCustomers && recentCustomers.length > 0) { %>
+                        <% recentCustomers.forEach(function(customer) { %>
+                            <tr class="customer-row" data-customer-id="<%= customer._id %>">
+                                <td width="60px">
+                                    <div class="imgBx">
+                                        <img src="/images/user.png" alt="user image">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="name">
+                                        <span><%= customer.user.name %></span>
+                                        <div class="name-id">
+                                            <span>Customer ID: <%= customer._id %></span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="2">No recent customers found.</td>
+                        </tr>
+                    <% } %>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+    <!-- main end -->
+
+    <!-- navigation end -->
+     <script src="/js/tickets.js"></script>
+    <script src="/js/admin.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html> 

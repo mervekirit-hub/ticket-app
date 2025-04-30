@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Oluşturma Sayfası</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/customer-login.css">
+
+</head>
+<body>
+    <div class="container">
+        <a href="/logout" class="logout-btn" title="Logout">
+            <i class="bi bi-power"></i>
+        </a>
+        <div class="header">
+             <h1>WELCOME <span><%= customer.user.name %></span> </h1>
+             <input type="hidden" id="customer-name" value="<%= customer.user.name %>">
+             <input type="hidden" id="customer-email" value="<%= customer.user.email %>">
+            <div class="subtitle">
+                <span id="problem-text">Please provide details of the issue</span>
+                <span id="datetime"></span>
+            </div>
+            <img src="/images/beam_big.png" class="logo" alt="beam logo">
+        </div>
+
+        <div class="form-section">
+            <div class="form-group">
+                <label for="ticket-title">Ticket Title</label>
+                <input type="text" id="ticket-title" class="input-field" placeholder="Enter ticket title">
+            </div>
+
+            <div class="form-group">
+                <label>Department</label>
+                <div class="dropdown" id="priority-dropdown">
+                    <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span class="selected-value">Select department</span>
+                        <i class="bi bi-caret-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-item" onclick="selectItem(this, 'IT')">IT</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'HR')">HR</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'Finance')">Finance</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'Support')">Support</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'Other')">Other</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" class="input-field" placeholder="Describe your problem in detail"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Priority</label>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span class="selected-value">Select priority</span>
+                        <i class="bi bi-caret-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-item priority-low" onclick="selectItem(this, 'Low')">
+                            <div class="priority-item">
+                                <div class="priority-dot"></div>
+                                <span>Low</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-item priority-medium" onclick="selectItem(this, 'Medium')">
+                            <div class="priority-item">
+                                <div class="priority-dot"></div>
+                                <span>Medium</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-item priority-high" onclick="selectItem(this, 'High')">
+                            <div class="priority-item">
+                                <div class="priority-dot"></div>
+                                <span>High</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-item priority-critical" onclick="selectItem(this, 'Critical')">
+                            <div class="priority-item">
+                                <div class="priority-dot"></div>
+                                <span>Critical</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Category</label>
+                <div class="dropdown">
+                    <div class="dropdown-toggle" onclick="toggleDropdown(this)">
+                        <span class="selected-value">Select category</span>
+                        <i class="bi bi-caret-down"></i>
+                    </div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-item" onclick="selectItem(this, 'Software Issue')">Software Issue</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'Hardware Issue')">Hardware Issue</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'Network Issue')">Network Issue</div>
+                        <div class="dropdown-item" onclick="selectItem(this, 'Other')">Other</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="submit-btn" onclick="submitTicket()">Submit Ticket</button>
+        </div>
+
+
+        <!-- Yeni eklenen ticket geçmişi bölümü -->
+        <% if (tickets && tickets.length > 0) { %>
+            <div class="form-section ticket-history">
+                <h2>Your Previous Tickets</h2>
+                <div class="ticket-list">
+                    <% tickets.forEach(ticket => { %>
+                    <div class="ticket-item">
+                        <div class="ticket-header">
+                            <div class="ticket-title"><%= ticket.ticket.title %></div>
+                            <div class="ticket-date"><%= new Date(ticket.createdAt).toLocaleString() %></div>
+                        </div>
+                        <div>
+                            <span class="ticket-department"><%= ticket.ticket.department %></span>
+                            <span class="ticket-priority priority-<%= ticket.ticket.priority.toLowerCase() %>">
+                                <%= ticket.ticket.priority %>
+                            </span>
+                            <span class="ticket-status status-<%= ticket.status.toLowerCase() %>">
+                                <%= ticket.status %>
+                            </span>
+                        </div>
+                        <div class="ticket-description">
+                            <%= ticket.ticket.description %>
+                        </div>
+                    </div>
+                    <% }); %>
+                </div>
+            </div>
+            <% } %>       
+
+
+        <div class="footer">
+            <img src="/images/beam_b.png" class="footer-logo" alt="beam logo">
+            <p>If you have another problem please contact your provider here</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">About Us</a>
+                <a href="#" class="footer-link">Products</a>
+                <a href="#" class="footer-link">Our Services</a>
+                <a href="#" class="footer-link">KWKK</a>
+                <a href="#" class="footer-link">Cookie Policy</a>
+                <a href="#" class="footer-link">Contact Us</a>
+            </div>
+            <div class="copyright">© 2025 All Rights Reserved</div>
+        </div>
+    </div>
+
+<script src="/js/customer-login.js"></script>
+</body>
+</html>

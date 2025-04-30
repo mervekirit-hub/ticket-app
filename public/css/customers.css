@@ -1,0 +1,621 @@
+:root {
+    --primary-color: #1a56db;
+    --secondary-color: #e2e8f0;
+    --border-color: #e5e7eb;
+    --background-color: #f9fafb;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --danger-color: #ef4444;
+    --pending-color: #f59e0b;
+    --open-color: #3b82f6;
+    --closed-color: #10b981;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+
+.main {
+    padding-left: 20px;
+    padding-bottom: 50px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.toggle {
+    margin-right: 15px; /* Menü butonunun başlıkla çakışmasını önler */
+}
+
+.dashboard-title {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--text-primary);
+    flex-grow: 1;
+}
+
+.dashboard-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+}
+
+.btn-refresh, .btn-outline, .btn-primary, .btn-delete {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+}
+
+.btn-refresh:hover, .btn-outline:hover, .btn-primary:hover, .btn-delete:hover {
+    background-color: var(--secondary-color);
+}
+
+.btn-logout {
+    background-color: var(--text-primary);
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.btn-logout:hover {
+    background-color: var(--text-secondary)
+}
+
+.btn-delete.delete-active {
+    background-color: #dc3545;
+    color: white;
+    box-shadow: 0 0 10px rgba(220, 53, 69, 0.5);
+}
+
+/* Trash butonları için stil */
+.trash-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #dc3545;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s ease;
+    display: none; 
+}
+
+.trash-button:hover {
+    background: #c82333;
+    transform: scale(1.2);
+}
+.trash-button:hover i {
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}
+
+.customers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 20px;
+}
+
+.customer-card {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.customer-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.customer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.customer-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.customer-id {
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.customer-company {
+    font-size: 14px;
+    padding: 4px 8px;
+    background-color: #f3f4f6;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.customer-contact {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.customer-email {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+.customer-department {
+    font-size: 14px;
+    padding: 4px 8px;
+    background-color: #f3f4f6;
+    color: var(--text-secondary);
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.email-button {
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+}
+
+.email-button:hover {
+    background-color: #d1d5db;
+}
+
+.tickets-section {
+    margin-top: 15px;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eff6ff;
+    color: var(--primary-color);
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.ticket-count:hover {
+    background-color: #dbeafe;
+}
+
+.ticket-list {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.ticket-item {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.no-tickets-message {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.ticket-item a {
+    text-decoration: none;
+}
+
+.ticket-item:last-child {
+    border-bottom: none;
+}
+
+.ticket-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 210px;
+}
+
+.ticket-status {
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.status-open { 
+    color: var(--success-color); 
+    background-color:#d1fae5; 
+}
+.status-processing {
+    color: var(--pending-color); 
+    background-color: #fef3c7; 
+}
+.status-closed {
+    color: var(--danger-color); 
+    background-color: #fad1d1; 
+}
+
+.total-tickets {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.total-tickets:hover {
+    text-decoration: underline;
+}
+
+.trash-button {
+    position: absolute;
+    top: 0;  
+    right: 0; 
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.trash-button i {
+    font-size: 14px;
+    color: var(--danger-color);
+}
+
+/* GENEL MODAL STİLLERİ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Arka plan transparanlığı */
+    backdrop-filter: blur(3px); /* Arka plana blur efekti */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+}
+
+.modal-content h2 {
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    text-align: center;
+}
+
+/* Modal açılma animasyonu */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* DELETE MODAL ÖZEL STİLLERİ */
+#deleteModal .modal-content {
+    width: 400px;
+    text-align: center;
+}
+
+#deleteModal .btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#deleteModal .btn-outline {
+    background-color: #c8c8c8;
+    border: 1px solid var(--border-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ADD CUSTOMER MODAL ÖZEL STİLLERİ */
+#addCustomerModal .modal-content {
+    width: 450px;
+}
+
+#addCustomerModal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#addCustomerModal input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-size: 14px;
+}
+
+#addCustomerModal .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+#addCustomerModal .btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+}
+
+/* MESSAGE MODAL ÖZEL STİLLERİ */
+#messageModal .modal-content {
+    width: 350px;
+    text-align: center;
+}
+
+#messageText.success {
+    color: var(--success-color);
+}
+
+#messageText.error {
+    color: var(--danger-color);
+}
+
+/* FILTER MODAL ÖZEL STİLLERİ */
+
+#filterModal.modal {
+    display: none; 
+    justify-content: center; 
+    align-items: center;
+}
+
+#filterModal .filter-modal-content {
+    padding: 25px;
+    position: static;
+    transform: none !important;
+    width: 80%;
+    max-height: 600px;
+}
+
+#filterModal h2 {
+    margin-bottom: 20px;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.modal-actions {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#filterModal .filter-options {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+#filterModal .filter-column {
+    flex: 1;
+    max-height: 300px; 
+    overflow-y: auto; 
+    padding: 10px;
+    position: relative;
+}
+
+#filterModal .filter-column h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--text-primary);
+}
+
+#filterModal .filter-item {
+    padding: 10px;
+    margin-bottom: 8px;
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease;
+}
+
+#filterModal .filter-item:hover {
+    background-color: #d1d5db;
+}
+
+#filterModal .filter-item i {
+    display: none;
+}
+
+#filterModal .filter-item.active {
+    background-color: #dbeafe;
+    font-weight: 500;
+}
+
+#filterModal .filter-item.active i {
+    display: inline;
+}
+
+#filterModal #id {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    margin-top: 5px;
+}
+
+#filterModal .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#filterModal .btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+/* FORM ELEMANLARI */
+.modal input, .modal select, .modal textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+}
+
+.modal input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 86, 219, 0.2);
+}
+
+/* MODAL BUTONLARININ ORTAK STİLLERİ */
+.modal .btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 120px;
+}
+
+.modal .btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.modal .btn-primary:hover {
+    background-color: #1548b5;
+}
+
+.modal .btn-outline {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.modal .btn-outline:hover {
+    background-color: var(--secondary-color);
+}
+
+.modal .btn-danger {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+}
+
+.modal .btn-danger:hover {
+    background-color: #dc2626;
+}

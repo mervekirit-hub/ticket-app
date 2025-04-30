@@ -1,0 +1,472 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --accent-color: #3498db;
+    --text-color: #ecf0f1;
+    --light-gray: #bdc3c7;
+    --dark-gray: #7f8c8d;
+    --success-color: #2ecc71;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --critical-color: #c0392b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.logout-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 36px;
+    width: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: var(--text-color);
+    background-color: var(--primary-color);
+    font-size: 25px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.header {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 25px;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.header .subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    opacity: 0.8;
+    text-transform: none;
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 125px;
+    height: 50px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.form-section {
+    padding: 25px;
+}
+
+.form-group {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.input-field {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+.input-field:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+textarea.input-field {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.dropdown {
+    position: relative;
+    z-index: 1;
+}
+
+.dropdown-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dropdown-toggle:hover {
+    border-color: var(--accent-color);
+}
+
+.dropdown-toggle .selected-value {
+    color: var(--dark-gray);
+}
+
+.dropdown-toggle.active .selected-value {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.dropdown-menu {
+    position: relative;
+    display: block;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.dropdown-menu.show {
+    height: auto; 
+    opacity: 1;
+    z-index: auto;
+    overflow-y: auto;
+}
+
+
+.dropdown-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.dropdown-item.selected {
+    background-color: #e9f7fe;
+    color: var(--accent-color);
+    font-weight: 500;
+}
+
+.priority-item {
+    display: flex;
+    align-items: center;
+}
+
+.priority-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.priority-low .priority-dot {
+    background-color: var(--success-color);
+}
+
+.priority-medium .priority-dot {
+    background-color: var(--warning-color);
+}
+
+.priority-high .priority-dot {
+    background-color: var(--danger-color);
+}
+
+.priority-critical .priority-dot {
+    background-color: var(--critical-color);
+}
+
+.submit-btn {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.submit-btn:hover {
+    background-color: #2980b9;
+}
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 25px;
+    text-align: center;
+}
+
+.footer-logo {
+    float: left;
+    width: 85px;
+    height: 80px;
+    margin-left: 30px;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.footer-link {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.footer-link:hover {
+    opacity: 0.8;
+}
+
+.copyright {
+    opacity: 0.7;
+    font-size: 14px;
+}
+
+.ticket-history {
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+
+.ticket-history h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.ticket-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ticket-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 4px solid var(--accent-color);
+    transition: all 0.3s;
+}
+
+.ticket-item:hover {
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.ticket-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.ticket-title {
+    font-weight: 600;
+    color: var(--secondary-color);
+    font-size: 18px;
+}
+
+.ticket-date {
+    color: var(--dark-gray);
+    font-size: 14px;
+}
+
+.ticket-department {
+    display: inline-block;
+    padding: 3px 8px;
+    background-color: #e9f7fe;
+    color: var(--accent-color);
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.ticket-priority {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.priority-low {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: var(--success-color);
+}
+
+.priority-medium {
+    background-color: rgba(243, 156, 18, 0.1);
+    color: var(--warning-color);
+}
+
+.priority-high {
+    background-color: rgba(231, 76, 60, 0.1);
+    color: var(--danger-color);
+}
+
+.priority-critical {
+    background-color: rgba(192, 57, 43, 0.1);
+    color: var(--critical-color);
+}
+
+.ticket-status {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.status-open {
+    background-color: rgba(52, 152, 219, 0.1);
+    color: var(--accent-color);
+}
+
+.status-processing {
+    background-color: rgba(155, 89, 182, 0.1);
+    color: #9b59b6;
+}
+
+.status-closed {
+    background-color: rgba(46, 204, 113, 0.1);
+    color: var(--success-color);
+}
+
+.ticket-description {
+    color: var(--dark-gray);
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.submit-btn.processing {
+    cursor: not-allowed;
+    opacity: 0.7;
+    background-color: #6c757d;
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@media (max-width: 1024px) {
+    .container {
+        max-width: 800px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 500px;
+    }
+    .header h1 {
+        font-size: 24px;
+    }
+    
+    .form-section {
+        padding: 20px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .header {
+        padding: 20px 15px;
+    }
+    
+    .logo {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+    
+    .form-section {
+        padding: 15px;
+    }
+    
+    .input-field, .dropdown-toggle {
+        padding: 10px 12px;
+    }
+}
