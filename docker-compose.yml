@@ -10,6 +10,10 @@ services:
     command: sh -c "npm install && npm start"
     depends_on:
       - mongodb
+    environment:
+      - JWT_SECRET=supersecretkey123
+      - DB_URI=mongodb://mongodb:27017
+      - PORT=3000
 
   mongodb:
     image: mongo:latest
