@@ -72,16 +72,16 @@ To run the app in a Docker container:
 
 Folder Structure
 
-ticket-app/
-├── routes/             # Route handlers
-├── middlewares/        # Authentication & validation logic
-├── views/              # EJS templates
-├── public/             # Static assets
-├── App.js              # Main app entry
-├── db.js               # MongoDB connection
-├── Dockerfile          # Docker setup
-├── nginx.conf          # Nginx configuration
-└── .env                # Environment variables
+    ticket-app/
+        ├── routes/             # Route handlers
+        ├── middlewares/        # Authentication & validation logic
+        ├── views/              # EJS templates
+        ├── public/             # Static assets
+        ├── App.js              # Main app entry
+        ├── db.js               # MongoDB connection
+        ├── Dockerfile          # Docker setup
+        ├── nginx.conf          # Nginx configuration
+        └── .env                # Environment variables
 
 Security Features
 
@@ -98,5 +98,6 @@ Security Features
 Author
 
 Merve Kırıt
+
 
 
