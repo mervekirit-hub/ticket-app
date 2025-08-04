@@ -32,34 +32,34 @@ Tech Stack
 Getting Started
 Prerequisites
 
-    Node.js (v16+)
+    -Node.js (v16+)
 
-    MongoDB instance
+    -MongoDB instance
 
-    Docker & Docker Compose (optional, for containerized setup)
+    -Docker & Docker Compose (optional, for containerized setup)
 
 Installation
 
-    Clone the repository:
+Clone the repository:
 
-git clone <your-repo-url>
-cd ticket-app
+    git clone <your-repo-url>
+    cd ticket-app
 
 Install dependencies:
 
-npm install
+    npm install
 
 Create a .env file based on the provided template:
 
-PORT=3000
-MONGO_URI=mongodb://localhost:27017/ticketApp
-JWT_SECRET=your_jwt_secret
+    PORT=3000
+    MONGO_URI=mongodb://localhost:27017/ticketApp
+    JWT_SECRET=your_jwt_secret
 
 Start the development server:
 
     npm start
-
-    Open your browser and visit: http://localhost:3000
+    
+Open your browser and visit: http://localhost:3000
 
 Docker (Optional)
 
@@ -96,3 +96,4 @@ Security Features
 Author
 
 Merve Kırıt
+
