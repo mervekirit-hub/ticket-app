@@ -59,15 +59,17 @@ Start the development server:
 
     npm start
     
-Open your browser and visit: http://localhost:3000
+Open your browser 
+
+    visit: http://localhost:3000
 
 Docker (Optional)
-
 To run the app in a Docker container:
 
-docker-compose up --build
+    docker-compose up --build
 
-Access it via http://localhost:80 (Nginx will reverse-proxy to the app container).
+    Access it via http://localhost:80 (Nginx will reverse-proxy to the app container).
+
 Folder Structure
 
 ticket-app/
@@ -96,4 +98,5 @@ Security Features
 Author
 
 Merve Kırıt
+
 
