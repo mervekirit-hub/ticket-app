@@ -19,53 +19,53 @@ Features
 
 Tech Stack
 
-    -Backend: Node.js, Express.js
+    Backend: Node.js, Express.js
 
-    -Database: MongoDB (via Mongoose)
+    Database: MongoDB (via Mongoose)
 
-    -Templating: EJS
+    Templating: EJS
 
-    -Security: Helmet, CSRF, JWT, rate limiting
+    Security: Helmet, CSRF, JWT, rate limiting
 
-    -Dev Tools: Nodemon, Docker, Docker Compose
+    Dev Tools: Nodemon, Docker, Docker Compose
 
 Getting Started
 Prerequisites
 
-    ---Node.js (v16+)
+    Node.js (v16+)
 
-    ---MongoDB instance
+    MongoDB instance
 
-    ---Docker & Docker Compose (optional, for containerized setup)
+    Docker & Docker Compose (optional, for containerized setup)
 
 Installation
 
-    1.Clone the repository:
+    Clone the repository:
 
 git clone <your-repo-url>
 cd ticket-app
 
-    2.Install dependencies:
+Install dependencies:
 
 npm install
 
-    3.Create a .env file based on the provided template:
+Create a .env file based on the provided template:
 
 PORT=3000
 MONGO_URI=mongodb://localhost:27017/ticketApp
 JWT_SECRET=your_jwt_secret
 
-    4.Start the development server:
+Start the development server:
 
-npm start
+    npm start
 
-    5.Open your browser and visit: http://localhost:3000
+    Open your browser and visit: http://localhost:3000
 
 Docker (Optional)
 
 To run the app in a Docker container:
 
-(docker-compose up --build)
+docker-compose up --build
 
 Access it via http://localhost:80 (Nginx will reverse-proxy to the app container).
 Folder Structure
@@ -83,16 +83,16 @@ ticket-app/
 
 Security Features
 
-    ---Helmet for HTTP header hardening
+    Helmet for HTTP header hardening
 
-    ---CSRF protection middleware
+    CSRF protection middleware
 
-    ---JWT-based token authentication
+    JWT-based token authentication
 
-    ---Express Rate Limiter to prevent brute force attacks
+    Express Rate Limiter to prevent brute force attacks
 
-    ---Input validation with express-validator
+    Input validation with express-validator
 
 Author
-Merve Kırıt
 
+Merve Kırıt
